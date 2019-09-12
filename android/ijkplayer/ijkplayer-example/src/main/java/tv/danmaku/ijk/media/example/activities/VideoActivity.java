@@ -24,6 +24,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -38,6 +40,8 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import tv.danmaku.ijk.media.example.widget.media.IRenderView;
+import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.misc.ITrackInfo;
 import tv.danmaku.ijk.media.example.R;
@@ -52,7 +56,7 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
     private static final String TAG = "VideoActivity";
 
     private String mVideoPath;
-    private Uri    mVideoUri;
+    private Uri mVideoUri;
 
     private AndroidMediaController mMediaController;
     private IjkVideoView mVideoView;
@@ -79,6 +83,7 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
+
 
         mSettings = new Settings(this);
 
@@ -140,6 +145,7 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
         mVideoView = (IjkVideoView) findViewById(R.id.video_view);
         mVideoView.setMediaController(mMediaController);
         mVideoView.setHudView(mHudView);
+        mVideoView.setAspectRatio(IRenderView.AR_MATCH_PARENT);
         // prefer mVideoPath
         if (mVideoPath != null)
             mVideoView.setVideoPath(mVideoPath);
@@ -151,7 +157,27 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
             return;
         }
         mVideoView.start();
+
+        handdler.postDelayed(runnable, 30000);
+
     }
+
+    Handler handdler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            mVideoView.setVideoPath("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch" + i + "/main/av_stream");
+            i++;
+            if (i == 42) i = 33;
+            handdler.postDelayed(this, 30000);
+        }
+    };
 
     @Override
     public void onBackPressed() {
@@ -180,6 +206,8 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
         return true;
     }
 
+    int i = 34;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -188,6 +216,11 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
             String aspectRatioText = MeasureHelper.getAspectRatioText(this, aspectRatio);
             mToastTextView.setText(aspectRatioText);
             mMediaController.showOnce(mToastTextView);
+            return true;
+        } else if (id == R.id.action_toggle_change) {
+            mVideoView.setVideoPath("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch" + i + "/main/av_stream");
+            i++;
+            if (i == 42) i = 33;
             return true;
         } else if (id == R.id.action_toggle_player) {
             int player = mVideoView.togglePlayer();

@@ -338,7 +338,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                     (TextUtils.isEmpty(scheme) || scheme.equalsIgnoreCase("file"))) {
                 IMediaDataSource dataSource = new FileMediaDataSource(new File(mUri.toString()));
                 mMediaPlayer.setDataSource(dataSource);
-            }  else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 mMediaPlayer.setDataSource(mAppContext, mUri, mHeaders);
             } else {
                 mMediaPlayer.setDataSource(mUri.toString());
@@ -566,9 +566,9 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                                 .setPositiveButton(R.string.VideoView_error_button,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int whichButton) {
-                                            /* If we get here, there is no onError listener, so
-                                             * at least inform them that the video is over.
-                                             */
+                                                /* If we get here, there is no onError listener, so
+                                                 * at least inform them that the video is over.
+                                                 */
                                                 if (mOnCompletionListener != null) {
                                                     mOnCompletionListener.onCompletion(mMediaPlayer);
                                                 }
@@ -917,6 +917,11 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     private int mCurrentAspectRatioIndex = 0;
     private int mCurrentAspectRatio = s_allAspectRatio[0];
 
+    public void setAspectRatio(int mCurrentAspectRatio) {
+        if (mRenderView != null)
+            mRenderView.setAspectRatio(mCurrentAspectRatio);
+    }
+
     public int toggleAspectRatio() {
         mCurrentAspectRatioIndex++;
         mCurrentAspectRatioIndex %= s_allAspectRatio.length;
@@ -1037,24 +1042,14 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                     ijkMediaPlayer = new IjkMediaPlayer();
                     ijkMediaPlayer.native_setLogLevel(IjkMediaPlayer.IJK_LOG_DEBUG);
 
-                    // 强制使用tcp
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "rtsp_transport", "tcp");
+                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "rtsp_transport", "tcp");//不加这个参数 可能会花屏
+                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "analyzemaxduration", 100L);
+                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "probesize", 10240L);
+                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "flush_packets", 1L);
+                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "packet-buffering", 0L);
+                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 1L);
 
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 60);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-fps", 0);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "fps", 30);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "overlay-format", IjkMediaPlayer.SDL_FCC_YV12);
-
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "packet-buffering", 0);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "fflags", "nobuffer");
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "max-buffer-size", 1024);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "min-frames", 10);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "start-on-prepared", 1);
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "probsize", "4096");
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "analyzeduration", "2000000");
-
-                  /*  if (mSettings.getUsingMediaCodec()) {
+                    if (mSettings.getUsingMediaCodec()) {
                         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
                         if (mSettings.getUsingMediaCodecAutoRotate()) {
                             ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-auto-rotate", 1);
@@ -1087,7 +1082,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
 
                     ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "http-detect-range-support", 0);
 
-                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);*/
+                    ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);
                 }
                 mediaPlayer = ijkMediaPlayer;
             }

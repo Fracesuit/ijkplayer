@@ -68,7 +68,9 @@ public class SampleMediaListFragment extends Fragment {
             }
         });
 
-        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch33/sub/av_stream", "44444");
+        mAdapter.addItem("rtmp://10.24.2.199:10085/hls/Y08EDjSZR", "网商开源的");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch33/sub/av_stream", "sub_rtsp");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch33/main/av_stream", "main_rtsp");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8", "bipbop basic master playlist");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear1/prog_index.m3u8", "bipbop basic 400x300 @ 232 kbps");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8", "bipbop basic 640x480 @ 650 kbps");
