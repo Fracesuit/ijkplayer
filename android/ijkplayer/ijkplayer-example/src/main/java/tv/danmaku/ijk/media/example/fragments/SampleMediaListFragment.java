@@ -68,8 +68,25 @@ public class SampleMediaListFragment extends Fragment {
             }
         });
 
-        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch33/sub/av_stream", "44444");
-        mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8", "bipbop basic master playlist");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch33/sub/av_stream", "ch33/sub");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch34/sub/av_stream", "ch34/sub");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch35/sub/av_stream", "ch35/sub");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch36/sub/av_stream", "ch36/sub");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch37/sub/av_stream", "ch37/sub");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch38/sub/av_stream", "ch38/sub");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch39/sub/av_stream", "ch39/sub");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch40/sub/av_stream", "ch40/sub");
+
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch33/main/av_stream", "ch33/main");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch34/main/av_stream", "ch34/main");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch35/main/av_stream", "ch35/main");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch36/main/av_stream", "ch36/main");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch37/main/av_stream", "ch37/main");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch38/main/av_stream", "ch38/main");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch39/main/av_stream", "ch39/main");
+        mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch40/main/av_stream", "ch40/main");
+
+     /*   mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8", "bipbop basic master playlist");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear1/prog_index.m3u8", "bipbop basic 400x300 @ 232 kbps");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8", "bipbop basic 640x480 @ 650 kbps");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear3/prog_index.m3u8", "bipbop basic 640x480 @ 1 Mbps");
@@ -81,7 +98,7 @@ public class SampleMediaListFragment extends Fragment {
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear3/prog_index.m3u8", "bipbop advanced 960x540 @ 910 kbps");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear4/prog_index.m3u8", "bipbop advanced 1289x720 @ 1 Mbps");
         mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear5/prog_index.m3u8", "bipbop advanced 1920x1080 @ 2 Mbps");
-        mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear0/prog_index.m3u8", "bipbop advanced 22.050Hz stereo @ 40 kbps");
+        mAdapter.addItem("http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/gear0/prog_index.m3u8", "bipbop advanced 22.050Hz stereo @ 40 kbps");*/
     }
 
     final class SampleMediaItem {
