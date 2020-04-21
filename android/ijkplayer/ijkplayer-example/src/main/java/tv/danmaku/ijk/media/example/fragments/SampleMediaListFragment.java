@@ -68,6 +68,7 @@ public class SampleMediaListFragment extends Fragment {
             }
         });
 
+        mAdapter.addItem("rtmp://10.24.2.199:10085/hls/VSMCDjAZg", "hhhhhhhhhhhhhhhhh");
         mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch33/sub/av_stream", "ch33/sub");
         mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch34/sub/av_stream", "ch34/sub");
         mAdapter.addItem("rtsp://admin:xinyi2513@10.24.5.12:554/h264/ch35/sub/av_stream", "ch35/sub");
